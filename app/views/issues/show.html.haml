@@ -1,0 +1,31 @@
+
+
+%h1=@issue.title + " Volume " + @issue.volume.to_s + " Issue " + @issue.issue_number.to_s 
+= link_to 'Edit', edit_issue_path(@issue)
+
+%br
+%br
+%br
+
+
+
+%table#articles
+  %thead
+    %tr
+      %th Title
+      %th Order Number
+      %th Image Url
+      %th Content
+      %th Show
+      %th Delete
+  %tbody
+    - @articles.each do |article|
+      %tr
+        %td= article.title 
+        %td= article.order_number
+        %td= article.image_url
+        %td= article.content
+        %td= link_to image_tag("edit.png", size: "24x24"), issue_article_path(params[:id], article)
+        %td= link_to image_tag("delete.png", size: "24x24"), issue_article_path(params[:id], article), :method => :delete
+        
+= link_to "New Article", new_issue_article_path(params[:id])

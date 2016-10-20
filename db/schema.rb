@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20161019185756) do
     t.integer  "order_number"
     t.string   "image_url"
     t.text     "content"
+    t.integer  "issue_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
