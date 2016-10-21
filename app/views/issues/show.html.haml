@@ -29,3 +29,5 @@
         %td= link_to image_tag("delete.png", size: "24x24"), issue_article_path(params[:id], article), :method => :delete
         
 = link_to "New Article", new_issue_article_path(params[:id])
+%br
+= link_to "Back to Issues", issues_path
