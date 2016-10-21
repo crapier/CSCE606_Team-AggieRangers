@@ -29,6 +29,13 @@ class ArticlesController < ApplicationController
         redirect_to issue_path(params[:issue_id]) 
     end
     
+    def update
+        @article = Article.find(params[:id])
+        @article.update_attributes!(article_params)
+        flash[:notice] = "#{@article.title} was successfully updated."
+        redirect_to issue_article_path(params[:issue_id], params[:id])
+    end
+    
     def destroy
         @article = Article.find(params[:id])
         @article.destroy

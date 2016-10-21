@@ -1,4 +1,18 @@
 
+= form_tag issue_path(@issue), :method => :put do
 
+  = label :issue, :title, 'Title'
+  = text_field :issue, 'title'
+
+  = label :issue, :volume, 'Volume'
+  = number_field :issue, 'volume'
+  
+  = label :issue, :issue_number, 'Issue'
+  = number_field :issue, 'issue_number'
+
+  = label :issue, :date, 'Date'
+  = date_select :issue, :date
+
+  = submit_tag 'Save Changes'
 
 = link_to "Cancel", issue_path(@issue)

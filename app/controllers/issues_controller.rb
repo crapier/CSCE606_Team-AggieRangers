@@ -28,6 +28,13 @@ class IssuesController < ApplicationController
         redirect_to issues_path 
     end
     
+    def update
+        @issue = Issue.find(params[:id])
+        @issue.update_attributes!(issue_params)
+        flash[:notice] = "#{@issue.title} was successfully updated."
+        redirect_to issue_path(params[:id])
+    end
+    
     def destroy
         @issue = Issue.find(params[:id])
         @issue.destroy

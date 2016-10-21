@@ -1,3 +1,18 @@
 
+= form_tag issue_article_path(@issue, @article), :method => :put do
+
+  = label :article, :title, 'Title'
+  = text_field :article, 'title'
+
+  = label :article, :order_number, 'Order Number'
+  = number_field :article, 'order_number'
+  
+  = label :article, :image_url, 'Image Url'
+  = text_field :article, 'image_url'
+
+  = label :article, :content, 'Content'
+  = text_area :article, :content
+
+  = submit_tag 'Save Changes'
 
 = link_to "Cancel", issue_article_path(@issue, @article)
