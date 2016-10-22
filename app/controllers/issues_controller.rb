@@ -14,7 +14,7 @@ class IssuesController < ApplicationController
     
     def show
        @issue = Issue.find(params[:id])
-       @articles = @issue.articles
+       @articles = @issue.articles.order(:order_number => :asc)
     end
     
     
