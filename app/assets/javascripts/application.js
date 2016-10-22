@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require bootstrap.min
+//= require sb-admin-2.min
+//= require dataTables.bootstrap.min
+//= require dataTables.responsive.js
