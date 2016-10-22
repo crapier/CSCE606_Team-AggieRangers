@@ -1,27 +1,47 @@
-%h3 Filters
-%span date 
-%span title
-%br 
-%br
+.container
+  .row
+    .col-lg-2
+      %h3 Filters
+  
+    = form_tag issues_path do
+    
+      .col-lg-2
+      = label :issue, :title, 'Title'
+      = text_field :issue, 'title'
+    
+      .col-lg-2
+      = label :issue, :date, 'Date'
+      = date_select :issue, :date
+    
+      .col-lg-2
+      = submit_tag 'Filter'
+      
+    = link_to "Cancel", issues_path
+    %br 
+    %br
+    %br
 
-%table#issues
-  %thead
-    %tr
-      %th Title
-      %th Volume
-      %th Issue
-      %th Date
-      %th Show
-      %th Delete
-      %th Generate
-  %tbody
-    - @issues.each do |issue|
-      %tr
-        %td= issue.title 
-        %td= issue.volume
-        %td= issue.issue_number
-        %td= issue.date
-        %td= link_to image_tag("edit.png", size: "24x24"), issue_path(issue)
-        %td= link_to image_tag("delete.png", size: "24x24"), issue_path(issue), :method => :delete
-        %td= link_to image_tag("generate.png", size: "24x24"), issue_path(issue)
-= link_to "New Issue", new_issue_path
+.container
+  .row
+    
+    %table#issues
+      %thead
+        %tr
+          %th Title
+          %th Volume
+          %th Issue
+          %th Date
+          %th Show
+          %th Delete
+          %th Generate
+      %tbody
+        - @issues.each do |issue|
+          %tr
+            %td= issue.title 
+            %td= issue.volume
+            %td= issue.issue_number
+            %td= issue.date
+            %td= link_to image_tag("edit.png", size: "24x24"), issue_path(issue)
+            %td= link_to image_tag("delete.png", size: "24x24"), issue_path(issue), :method => :delete
+            %td= link_to image_tag("generate.png", size: "24x24"), issue_path(issue)
+    = link_to "New Issue", new_issue_path

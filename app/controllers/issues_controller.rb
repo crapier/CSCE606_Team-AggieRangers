@@ -24,14 +24,14 @@ class IssuesController < ApplicationController
     
     def create
         @issue = Issue.create!(issue_params)
-        flash[:success] = "#{@issue.title} was successfully created."
+        flash[:success] = "Issue '#{@issue.title}' was successfully created."
         redirect_to issues_path 
     end
     
     def update
         @issue = Issue.find(params[:id])
         @issue.update_attributes!(issue_params)
-        flash[:success] = "#{@issue.title} was successfully updated."
+        flash[:success] = "Issue '#{@issue.title}' was successfully updated."
         redirect_to issue_path(params[:id])
     end
     
