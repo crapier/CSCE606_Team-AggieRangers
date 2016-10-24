@@ -15,6 +15,11 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
+    when /^the nth Degree home page/
+      '/issues'
+    when /^the Create New Issue page$/
+      '/issues/new'
+
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
