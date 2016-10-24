@@ -1,8 +1,4 @@
-# TL;DR: YOU SHOULD DELETE THIS FILE
-#
-# This file is used by web_steps.rb, which you should also delete
-#
-# You have been warned
+
 module NavigationHelpers
   # Maps a name to a path. Used by the
   #
@@ -16,16 +12,20 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
     when /^the nth Degree home page/
-      '/issues'
+      issues_path
     when /^the Create New Issue page$/
-      '/issues/new'
-
-
-    # Add more mappings here.
-    # Here is an example that pulls values out of the Regexp:
-    #
-    #   when /^(.*)'s profile page$/i
-    #     user_profile_path(User.find_by_login($1))
+      new_issue_path
+    when /^the Issue (\d+) page$/
+      issue_path($1.to_sym)
+    when /^the Issue (\d+) edit page$/
+      edit_issue_path($1.to_sym)
+    when /^the Create New Article page for Issue (\d+)$/
+      new_issue_article_path($1.to_sym)
+    when /^the Article (\d+) page for Issue (\d+)$/
+      issue_article_path($2.to_sym, $1.to_sym)
+    when /^the edit Article (\d+) page for Issue (\d+)$/
+      edit_issue_article_path($2.to_sym, $1.to_sym)
+      
 
     else
       begin
