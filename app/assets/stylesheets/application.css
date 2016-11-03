@@ -13,10 +13,12 @@
  *= require_tree .
  *= require_self
  *= require bootstrap.min
- *= require sb-admin-2.min
- *= require dataTables.bootstrap.css
- *= require dataTables.responsive.css
- *= require font-awesome/css/font-awesome.min.css
  */
  
+ #my-flash {
+    position: fixed; /* Stay in place */
+    left: 0;
+    width: 100%; /* Full width */
+    margin: 10px;
+ }
 
