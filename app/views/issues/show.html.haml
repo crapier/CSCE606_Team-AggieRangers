@@ -25,8 +25,8 @@
         %td= article.order_number
         %td= article.image_url
         %td= simple_format(article.content)
-        %td= link_to image_tag("edit.png", size: "24x24"), issue_article_path(params[:id], article)
-        %td= link_to image_tag("delete.png", size: "24x24"), issue_article_path(params[:id], article), :method => :delete
+        %td= link_to image_tag("show.png", size: "24x24"), issue_article_path(params[:id], article), id: "show " + article.title
+        %td= link_to image_tag("delete.png", size: "24x24"), issue_article_path(params[:id], article), id: "delete " + article.title, :method => :delete
         
 = link_to "New Article", new_issue_article_path(params[:id])
 %br
