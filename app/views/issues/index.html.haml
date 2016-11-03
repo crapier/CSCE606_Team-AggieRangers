@@ -1,8 +1,4 @@
-%h3 Filters
-%span date 
-%span title
-%br 
-%br
+
 
 %table#issues
   %thead
@@ -23,5 +19,5 @@
         %td= issue.date
         %td= link_to image_tag("show.png", size: "24x24"), issue_path(issue), id: "show " + issue.title
         %td= link_to image_tag("delete.png", size: "24x24"), issue_path(issue), id: "delete " + issue.title, method: :delete
-        %td= link_to image_tag("generate.png", size: "24x24"), issue_path(issue)
+        %td= link_to image_tag("generate.png", size: "24x24"), generate_issue_path(issue)
 = link_to "New Issue", new_issue_path

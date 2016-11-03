@@ -42,4 +42,7 @@ class IssuesController < ApplicationController
         redirect_to issues_path
     end
     
+    def generate
+        
+    end
 end
