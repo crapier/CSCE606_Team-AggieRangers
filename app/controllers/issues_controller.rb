@@ -1,3 +1,11 @@
+class EmailHTML
+   attr_accessor :text 
+   
+    def initialize(initial_text)  
+        @text = initial_text
+    end  
+end
+
 class IssuesController < ApplicationController
     
     def issue_params
@@ -43,6 +51,8 @@ class IssuesController < ApplicationController
     end
     
     def generate
+        @email_html = EmailHTML.new("<div>fake html test</div>")
         
+        @email_html.text += "\n<div>more stuff</div>"
     end
 end
