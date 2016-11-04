@@ -4,16 +4,16 @@
 
   = label :issue, :title, 'Title'
   = text_field :issue, 'title'
-
+  %br
   = label :issue, :volume, 'Volume'
   = number_field :issue, 'volume'
-  
+  %br 
   = label :issue, :issue_number, 'Issue'
   = number_field :issue, 'issue_number'
-
+  %br
   = label :issue, :date, 'Date'
   = date_select :issue, :date
-
+  %br
   = submit_tag 'Save Changes'
   
 = link_to "Cancel", issues_path

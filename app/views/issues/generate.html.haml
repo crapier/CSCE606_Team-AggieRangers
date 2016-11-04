@@ -1,4 +1,10 @@
 
 
 = label :email_html, :text, 'Generated HTML'
-= text_area :email_html, :text
+%br
+= text_area :email_html, :text, style: "width: 90%; height: 500px;"
+
+%br
+= link_to "Show Issue", issue_path(@issue)
+%br
+= link_to "Back to Issues", issues_path

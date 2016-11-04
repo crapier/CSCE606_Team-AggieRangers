@@ -4,16 +4,17 @@
 
   = label :article, :title, 'Title'
   = text_field :article, 'title'
-
+  %br
   = label :article, :order_number, 'Order Number'
   = number_field :article, 'order_number'
-  
+  %br
   = label :article, :image_url, 'Image Url'
   = text_field :article, 'image_url'
-
+  %br
   = label :article, :content, 'Content'
-  = text_area :article, :content
-
+  %br
+  = text_area :article, :content, style: "width: 90%; height: 500px;"
+  %br
   = submit_tag 'Save Changes'
   
 = link_to "Cancel", issue_path(params[:issue_id])
