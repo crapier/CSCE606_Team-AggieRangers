@@ -77,7 +77,7 @@ class IssuesController < ApplicationController
         @email_html.addline("            </tr>")
         @email_html.addline("        </tbody>")
         @email_html.addline("    </table>")
-        @email_html.addline("    <p style='text-align: justify;'>&nbsp;<strong><span style=3D'font-size: medium;'>Headlines at a Glance</span></strong></p>")
+        @email_html.addline("    <p style='text-align: justify;'>&nbsp;<strong><span style='font-size: medium;'>Headlines at a Glance</span></strong></p>")
         @email_html.addline("    <ul>")
         
         #add headlines at a glance
