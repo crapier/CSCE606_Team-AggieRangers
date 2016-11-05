@@ -1,10 +1,13 @@
+.container
+  .panel.panel-default
+    .panel-heading 
+      %h3=@article.title
+    %div{:style=>"padding: 20px 50px;", :class=>"panel-body"}
+      %p.text-center= image_tag(@article.image_url, size: "300x200")
+      %p= simple_format(@article.content)
+      
+      .div.text-right
+        = link_to "Back to Articles", issue_path(params[:issue_id]), :class=>"btn btn-primary btn-lg active btn-danger"
+        = link_to 'Edit', edit_issue_article_path(@issue, @article), :class=>"btn btn-primary btn-lg active btn-success"
 
-%h1= @article.title
-
-%p= @article.image_url
-
-%p= simple_format(@article.content)
-
-= link_to 'Edit', edit_issue_article_path(@issue, @article)
-%br
-= link_to "Back to Articles", issue_path(params[:issue_id])
+        
