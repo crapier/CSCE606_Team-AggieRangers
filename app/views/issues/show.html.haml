@@ -1,33 +1,38 @@
-
-
-%h1=@issue.title + " Volume " + @issue.volume.to_s + " Issue " + @issue.issue_number.to_s 
-= link_to 'Edit', edit_issue_path(@issue)
-
-%br
-%br
-%br
-
-
-
-%table#articles
-  %thead
-    %tr
-      %th Title
-      %th Order Number
-      %th Image Url
-      %th Content
-      %th Show
-      %th Delete
-  %tbody
-    - @articles.each do |article|
-      %tr
-        %td= article.title 
-        %td= article.order_number
-        %td= article.image_url
-        %td= simple_format(article.content)
-        %td= link_to image_tag("show.png", size: "24x24"), issue_article_path(params[:id], article), id: "show " + article.title
-        %td= link_to image_tag("delete.png", size: "24x24"), issue_article_path(params[:id], article), id: "delete " + article.title, :method => :delete
+.container
+  .panel.panel-default
+    .panel-heading 
+      %h3="Selected Issue"
+    .panel-body
+      .row
+        .col-sm-10
+          %h4=@issue.title + ", Volume " + @issue.volume.to_s + ", Issue " + @issue.issue_number.to_s
+        .col-sm-2
+          .div.text-right
+            = link_to 'Edit', edit_issue_path(@issue), :class=>"btn btn-primary btn-md active"
+  .panel.panel-default 
+    .panel-heading 
+      %h3="Articles"
+    .panel-body
+      %table#articles.table.table-hover
+        %thead
+          %tr
+            %th{:style => "width:25%"} Title
+            %th{:style => "width:5%"} Order Number
+            %th{:style => "width:25%"} Image Url
+            %th{:style => "width:35%"} Content
+            %th{:style => "width:5%", :class=> "text-center"} Show
+            %th{:style => "width:5%", :class=> "text-center"} Delete
+        %tbody
+          - @articles.each do |article|
+            %tr
+              %td= article.title 
+              %td= article.order_number
+              %td= article.image_url
+              %td= simple_format(article.content)
+              %td.text-center= link_to image_tag("show.png", size: "24x24"), issue_article_path(params[:id], article), id: "show " + article.title
+              %td.text-center= link_to image_tag("delete.png", size: "24x24"), issue_article_path(params[:id], article), id: "delete " + article.title, :method => :delete
+              
+      .div.text-right
+        = link_to "Back to Issues", issues_path, :class=>"btn btn-primary btn-lg active btn-danger"
+        = link_to "New Article", new_issue_article_path(params[:id]), :class=>"btn btn-primary btn-lg active btn-success"
         
-= link_to "New Article", new_issue_article_path(params[:id])
-%br
-= link_to "Back to Issues", issues_path
