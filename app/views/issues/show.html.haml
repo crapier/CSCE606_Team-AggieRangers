@@ -16,8 +16,7 @@
       %table#articles.table.table-hover
         %thead
           %tr
-            %th{:style => "width:25%"} Title
-            %th{:style => "width:5%"} Order Number
+            %th{:style => "width:30%"} Title
             %th{:style => "width:25%"} Image Url
             %th{:style => "width:35%"} Content
             %th{:style => "width:5%", :class=> "text-center"} Show
@@ -26,7 +25,6 @@
           - @articles.each do |article|
             %tr
               %td= article.title 
-              %td= article.order_number
               %td= article.image_url
               %td= simple_format(article.content)
               %td.text-center= link_to image_tag("show.png", size: "24x24"), issue_article_path(params[:id], article), id: "show " + article.title
