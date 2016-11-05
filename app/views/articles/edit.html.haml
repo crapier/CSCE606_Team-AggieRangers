@@ -1,18 +1,43 @@
+.container
+  .panel.panel-default
+    .panel-heading 
+      %h4.text-center Edit Article
+      = form_tag issue_article_path(@issue, @article), {:class=>"form-inline", :method => :put} do
+        .row
+          .col-sm-1
+          .col-sm-10
+            .form-group.new-issue-form-group
+              = label :article, :title, 'Title'
+              %br
+              = text_field :article, 'title', :class=>'form-control new-issue-form-group'
+          .col-sm-1
+          
+        .row
+          .col-sm-1
+          .col-sm-10
+            .form-group.new-issue-form-group
+              = label :article, :image_url, 'Image Url'
+              %br
+              = text_field :article, 'image_url', :class=>'form-control new-issue-form-group'
+          .col-sm-1
+            
+        .row 
+          .col-sm-1
+          .col-sm-10
+            .form-group.new-issue-form-group
+              = label :article, :content, 'Content'
+              %br
+              = text_area :article, :content, :class=>'form-control new-issue-form-group', :style=>"height:250px;"
+          .col-sm-1
+          
+        %br
+        %br
+        .div.text-right
+          = link_to "Cancel", issue_article_path(@issue, @article), :class=>"btn btn-primary btn-lg active btn-danger"
+          = submit_tag 'Save Changes', :class=>"btn btn-primary btn-lg active btn-success"
+      
 
-= form_tag issue_article_path(@issue, @article), :method => :put do
-
-  = label :article, :title, 'Title'
-  = text_field :article, 'title'
-
-  = label :article, :order_number, 'Order Number'
-  = number_field :article, 'order_number'
+  <!--  This one should not appear. This is implicit as drag and drop-->
+  <!--  = label :article, :order_number, 'Order Number'-->
+  <!--  = number_field :article, 'order_number'-->
   
-  = label :article, :image_url, 'Image Url'
-  = text_field :article, 'image_url'
-
-  = label :article, :content, 'Content'
-  = text_area :article, :content
-
-  = submit_tag 'Save Changes'
-
-= link_to "Cancel", issue_article_path(@issue, @article)
