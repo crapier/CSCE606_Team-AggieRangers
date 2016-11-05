@@ -15,12 +15,12 @@
  *= require bootstrap.min
  */
  
- #my-flash {
-    position: fixed; /* Stay in place */
-    left: 0;
-    width: 100%; /* Full width */
-    margin: 10px;
- }
+#my-flash {
+   position: fixed; /* Stay in place */
+   left: 0;
+   width: 100%; /* Full width */
+   margin: 10px;
+}
  
 body { 
  background: url(http://www.techandall.com/wp-content/uploads/2013/10/techandall_wallpaper_1.jpg) no-repeat center center fixed; 
@@ -29,8 +29,13 @@ body {
  -o-background-size: cover;
  background-size: cover;
 }
+
 #main-title{
  color: white;
  text-shadow: 1px 2px gray;
 }
+
+.new-issue-form-group {
+ width: 100% !important; 
+} 
 

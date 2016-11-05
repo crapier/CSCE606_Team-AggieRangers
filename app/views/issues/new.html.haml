@@ -1,38 +1,45 @@
-%h1 Create New Issue
-
 .container
-  = form_tag issues_path, :class=>"form-inline" do
-    
-    .row
-      .col-sm-12
-        .form-group
-          = label :issue, :title, 'Title'
-          %br
-          = text_field :issue, 'title', :class=>'form-control'
+  .panel.panel-default
+    .panel-heading 
+      %h4.text-center New Issue
+      = form_tag issues_path, :class=>"form-inline" do
+        
+        .row
+          .col-sm-1
+          .col-sm-10
+            .form-group.new-issue-form-group
+              = label :issue, :title, 'Title'
+              %br
+              = text_field :issue, 'title', :class=>'form-control new-issue-form-group'
+          .col-sm-1
           
-    .row
-      .col-sm-12
-        .form-group
-          = label :issue, :volume, 'Volume'
-          %br
-          = number_field :issue, 'volume', :class=>'form-control'
+        .row
+          .col-sm-1
+          .col-sm-10
+            .form-group.new-issue-form-group
+              = label :issue, :volume, 'Volume'
+              %br
+              = number_field :issue, 'volume', :class=>'form-control new-issue-form-group'
+          .col-sm-1
           
-    .row 
-      .col-sm-12
-        .form-group
-          = label :issue, :issue_number, 'Issue'
-          %br
-          = number_field :issue, 'issue_number', :class=>'form-control'
-      
-    <!-- This seems to be "private", and should not be managed by the user -->
-    <!--.form-group -->
-    <!--  = label :issue, :date, 'Date' -->
-    <!--  = date_select :issue, :date -->
-    %br
-    %br
-    .div.text-right
-      = link_to "Cancel", issues_path, :class=>"btn btn-primary btn-lg active btn-danger"
-      = submit_tag 'Save Changes', :class=>"btn btn-primary btn-lg active btn-success"
+        .row 
+          .col-sm-1
+          .col-sm-10
+            .form-group.new-issue-form-group
+              = label :issue, :issue_number, 'Issue'
+              %br
+              = number_field :issue, 'issue_number', :class=>'form-control new-issue-form-group'
+          .col-sm-1
+          
+        <!-- This seems to be "private", and should not be managed by the user -->
+        <!--.form-group -->
+        <!--  = label :issue, :date, 'Date' -->
+        <!--  = date_select :issue, :date -->
+        %br
+        %br
+        .div.text-right
+          = link_to "Cancel", issues_path, :class=>"btn btn-primary btn-lg active btn-danger"
+          = submit_tag 'Save Changes', :class=>"btn btn-primary btn-lg active btn-success"
       
     
   
