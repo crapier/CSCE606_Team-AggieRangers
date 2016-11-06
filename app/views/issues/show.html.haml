@@ -6,9 +6,12 @@
       .row
         .col-sm-10
           %h4=@issue.title + ", Volume " + @issue.volume.to_s + ", Issue " + @issue.issue_number.to_s
-        .col-sm-2
+        .col-sm-1
           .div.text-right
             = link_to 'Edit', edit_issue_path(@issue), :class=>"btn btn-primary btn-md active"
+        .col-sm-1
+          .div.text-right
+            = link_to image_tag("generate.png", size: "40x40"), generate_issue_path(@issue)
   .panel.panel-default 
     .panel-heading 
       %h3="Articles"
@@ -17,16 +20,12 @@
         %thead
           %tr
             %th{:style => "width:30%"} Title
-            %th{:style => "width:25%"} Image Url
-            %th{:style => "width:35%"} Content
             %th{:style => "width:5%", :class=> "text-center"} Show
             %th{:style => "width:5%", :class=> "text-center"} Delete
         %tbody
           - @articles.each do |article|
             %tr
               %td= article.title 
-              %td= article.image_url
-              %td= simple_format(article.content)
               %td.text-center= link_to image_tag("show.png", size: "24x24"), issue_article_path(params[:id], article), id: "show " + article.title
               %td.text-center= link_to image_tag("delete.png", size: "24x24"), issue_article_path(params[:id], article), id: "delete " + article.title, :method => :delete
               

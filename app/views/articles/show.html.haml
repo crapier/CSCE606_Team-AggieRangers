@@ -3,7 +3,8 @@
     .panel-heading 
       %h3=@article.title
     %div{:style=>"padding: 20px 50px;", :class=>"panel-body"}
-      %p.text-center= image_tag(@article.image_url, size: "300x200")
+      - if @article.image_url.length > 0 
+        %p.text-center= image_tag(@article.image_url, size: "300x200")
       %p= simple_format(@article.content)
       
       .div.text-right

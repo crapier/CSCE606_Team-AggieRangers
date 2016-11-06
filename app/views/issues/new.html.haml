@@ -32,9 +32,15 @@
           .col-sm-1
           
         <!-- This seems to be "private", and should not be managed by the user -->
-        <!--.form-group -->
-        <!--  = label :issue, :date, 'Date' -->
-        <!--  = date_select :issue, :date -->
+        .row 
+          .col-sm-1
+          .col-sm-10
+            .form-group.new-issue-form-group
+              = label :issue, :date, 'Date'
+              %br
+              = date_select :issue, :date
+          .col-sm-1
+          
         %br
         %br
         .div.text-right
