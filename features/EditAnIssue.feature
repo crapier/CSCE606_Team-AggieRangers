@@ -13,4 +13,4 @@ Scenario: Edit an Issue
     And I press "Save Changes"
     
     Then I should be on the Issue 1 page
-    And I should see "NewIssue Volume 10 Issue 15"
+    And I should see "NewIssue, Volume 10, Issue 15"

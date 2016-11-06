@@ -7,7 +7,7 @@ Scenario: Delete Issue
     And I am on the nth Degree home page
     Then I should see the issue "Delete Me"
     
-    When I follow "delete Delete Me"
+    When I follow "deleteDeleteMe"
     
     Then I should be on the nth Degree home page
     And I should see "Issue 'Delete Me' deleted."

@@ -12,6 +12,15 @@
               = text_field :article, 'title', :class=>'form-control new-issue-form-group'
           .col-sm-1
           
+        .row 
+          .col-sm-1
+          .col-sm-10
+            .form-group.new-issue-form-group
+              = label :article, :order_number, 'Order Number'
+              %br
+              = number_field :article, 'order_number'
+          .col-sm-1
+          
         .row
           .col-sm-1
           .col-sm-10

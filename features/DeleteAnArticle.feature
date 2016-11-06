@@ -9,6 +9,6 @@ Feature: News Writer can Delete the infromation for an Article
     And I should see the article "Delete me"
     
     
-    When I follow "delete Delete me"
+    When I follow "deleteDeleteme"
     Then I should be on the Issue 1 page
     And I should not see the article "Delete me"

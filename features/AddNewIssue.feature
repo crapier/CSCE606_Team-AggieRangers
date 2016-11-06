@@ -3,7 +3,7 @@ Feature: News Writer can manually add issue
 Scenario: Create an Issue
 
     Given I am on the nth Degree home page
-    When I follow "New Issue"
+    When I follow "Add Issue"
     Then I should be on the Create New Issue page
     When I fill in "issue[title]" with "Cucum_test_issue"
     And I fill in "issue[volume]" with "1"

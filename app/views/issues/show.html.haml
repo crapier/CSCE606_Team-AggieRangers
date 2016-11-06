@@ -26,8 +26,8 @@
           - @articles.each do |article|
             %tr
               %td= article.title 
-              %td.text-center= link_to image_tag("show.png", size: "24x24"), issue_article_path(params[:id], article), id: "show " + article.title
-              %td.text-center= link_to image_tag("delete.png", size: "24x24"), issue_article_path(params[:id], article), id: "delete " + article.title, :method => :delete
+              %td.text-center= link_to image_tag("show.png", size: "24x24"), issue_article_path(params[:id], article), id: "show" + article.title.gsub(" ", "")
+              %td.text-center= link_to image_tag("delete.png", size: "24x24"), issue_article_path(params[:id], article), id: "delete" + article.title.gsub(" ", ""), :method => :delete
               
       .div.text-right
         = link_to "Back to Issues", issues_path, :class=>"btn btn-primary btn-lg active btn-danger"

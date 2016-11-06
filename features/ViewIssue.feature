@@ -5,6 +5,6 @@ Scenario: View Issue
     Given I have added some issues
     And I am on the nth Degree home page
     
-    When I follow "show Test1"
+    When I follow "showTest1"
     Then I should be at an Issue page
-    And I should see "Test1"
+    And I should see /Test1/
