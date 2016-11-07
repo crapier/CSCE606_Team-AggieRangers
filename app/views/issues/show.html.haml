@@ -11,7 +11,7 @@
             = link_to 'Edit', edit_issue_path(@issue), :class=>"btn btn-primary btn-md active"
         .col-sm-1
           .div.text-right
-            = link_to image_tag("generate.png", size: "40x40"), generate_issue_path(@issue)
+            = link_to image_tag("generate.png", size: "40x40"), generate_issue_path(@issue), id: "generate" + @issue.title.gsub(" ", "")
   .panel.panel-default 
     .panel-heading 
       %h3="Articles"

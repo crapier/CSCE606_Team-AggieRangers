@@ -38,6 +38,7 @@ end
 
 Before do
   DatabaseCleaner.start
+  Issue.destroy_all()
 end
 
 After do |scenario|

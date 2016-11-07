@@ -21,9 +21,12 @@ When (/^(.*) within (.*[^:]):$/) do |step, parent, table_or_string|
   with_scope(parent) { When "#{step}:", table_or_string }
 end
 
+###################################
+#      Custom web steps           #
+###################################
   
 Given(/^I have added some articles for Issue (\d+)$/) do |issue_id|
-  @issue = Issue.find(issue_id)
+  @issue = Issue.all[issue_id.to_i - 1]
   @issue.articles.build(:title => "art_test1", :order_number => 1, :image_url => "image1.jpg", :content => "art_test1_cont")
   @issue.articles.build(:title => "art_test2", :order_number => 2, :image_url => "image2.jpg", :content => "art_test2_cont")
   @issue.articles.build(:title => "art_test3", :order_number => 3, :image_url => "image3.jpg", :content => "art_test3_cont")
@@ -31,7 +34,7 @@ Given(/^I have added some articles for Issue (\d+)$/) do |issue_id|
 end
 
 Given(/^I have added Delete me for Issue (\d+)/) do |issue_id|
-  @issue = Issue.find(issue_id)
+  @issue = Issue.all[issue_id.to_i - 1]
   @issue.articles.build(:title => "Delete me", :order_number => 1, :image_url => "image1.jpg", :content => "art_test1_cont")
   @issue.save!
 end
@@ -55,7 +58,8 @@ end
 
 
 Then(/^I should be at an article page for Issue (\d+)$/) do |issue_id|
-  @path = Regexp.new("\/issues\/" + issue_id + "\/articles\/\\d")
+  id = Issue.all[issue_id.to_i - 1].id
+  @path = Regexp.new("\/issues\/" + id.to_s + "\/articles\/\\d")
   
   expect(URI.parse(current_url).path).to match(@path)
 end
@@ -96,7 +100,8 @@ end
 
 
 Then(/^I should see the list of articles for Issue (\d+)$/) do |issue_id|
-  @articles = Issue.find(issue_id).articles
+  id = Issue.all[issue_id.to_i - 1].id
+  @articles = Issue.find(id).articles
   within 'table#articles' do 
     @articles.each do |article|
       if page.respond_to? :should
@@ -129,6 +134,22 @@ Then(/^I should not see the article "([^"]*)"$/) do |article_title|
   end
 end
 
+Then(/^I should be at generate page for Issue (\d+)$/) do |issue_id|
+  id = Issue.all[issue_id.to_i - 1].id
+  path = generate_issue_path(id)
+  
+  expect(URI.parse(current_url).path).to match(path)
+end
+
+Then(/^There should be some generated HTML$/) do
+  text_area = page.all("textarea#email_html_text")
+  
+  expect(text_area.first.text).to match(/<html>/)
+end
+
+###################################
+#      Default web steps          #
+###################################
 
 Given (/^(?:|I )am on (.+)$/) do |page_name|
   visit path_to(page_name)

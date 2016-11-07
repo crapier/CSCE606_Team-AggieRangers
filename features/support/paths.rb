@@ -16,15 +16,25 @@ module NavigationHelpers
     when /^the Create New Issue page$/
       new_issue_path
     when /^the Issue (\d+) page$/
-      issue_path($1.to_sym)
+      id = Issue.all[$1.to_i - 1].id
+      issue_path(id)
     when /^the Issue (\d+) edit page$/
-      edit_issue_path($1.to_sym)
+      id = Issue.all[$1.to_i - 1].id
+      edit_issue_path(id)
+    when /^the Issue (\d+) generate page$/
+      id = Issue.all[$1.to_i - 1].id
+      generate_issue_path(id)
     when /^the Create New Article page for Issue (\d+)$/
-      new_issue_article_path($1.to_sym)
+      id = Issue.all[$1.to_i - 1].id
+      new_issue_article_path(id)
     when /^the Article (\d+) page for Issue (\d+)$/
-      issue_article_path($2.to_sym, $1.to_sym)
+      id = Issue.all[$1.to_i - 1].id
+      id_a = Issue.find(id).articles[$2.to_i - 1].id
+      issue_article_path(id, id_a)
     when /^the edit Article (\d+) page for Issue (\d+)$/
-      edit_issue_article_path($2.to_sym, $1.to_sym)
+      id = Issue.all[$1.to_i - 1].id
+      id_a = Issue.find(id).articles[$2.to_i - 1].id
+      edit_issue_article_path(id, id_a)
       
 
     else

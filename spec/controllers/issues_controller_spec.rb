@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe IssuesController do
-		before(:all) do
+	before(:all) do
         @issue_1 = Issue.create(title: "title_1",volume: 1,issue_number: 2,date: 20161023)
         @issue_2 = Issue.create(title: "title_2",volume: 1,issue_number: 3,date: 20161022)
     end
@@ -65,6 +65,26 @@ describe IssuesController do
             delete :destroy, id: @issue_3[:id]
             expect(response).to have_http_status(302)
             expect(response).to redirect_to(issues_path)
+        end
+    end
+    
+    describe "#generate" do
+        before(:all) do
+           @issue_1.articles.build({:title => "article_1", :order_number => 1, :image_url => "image.png", :content => "Content Content Content"})
+           @issue_1.save!
+        end
+        
+        it "generate html" do  
+            get :generate, id: @issue_1[:id]
+            
+            expect(assigns(:email_html).text).to match(/<html>/)
+        end
+        
+        it "render generate page" do
+            get :generate, id: @issue_1[:id]
+            
+            expect(response).to have_http_status(200)
+            expect(response).to render_template(:generate)
         end
     end
 end
