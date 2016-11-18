@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  *= require bootstrap.min
+ *= require jquery-ui.min
+ *= require jquery-ui.structure.min
+ -= require jquery-ui.theme.min
  */
  
 #my-flash {

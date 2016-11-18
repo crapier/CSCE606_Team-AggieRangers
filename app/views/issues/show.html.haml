@@ -6,11 +6,9 @@
       .row
         .col-sm-10
           %h4=@issue.title + ", Volume " + @issue.volume.to_s + ", Issue " + @issue.issue_number.to_s
-        .col-sm-1
+        .col-sm-2
           .div.text-right
             = link_to 'Edit', edit_issue_path(@issue), :class=>"btn btn-primary btn-md active"
-        .col-sm-1
-          .div.text-right
             = link_to image_tag("generate.png", size: "40x40"), generate_issue_path(@issue), id: "generate" + @issue.title.gsub(" ", "")
   .panel.panel-default 
     .panel-heading 
@@ -22,14 +20,20 @@
             %th{:style => "width:30%"} Title
             %th{:style => "width:5%", :class=> "text-center"} Show
             %th{:style => "width:5%", :class=> "text-center"} Delete
-        %tbody
+        %tbody#sortable
           - @articles.each do |article|
-            %tr
+            %tr{:id => "article" + article.id.to_s}
               %td= article.title 
               %td.text-center= link_to image_tag("show.png", size: "24x24"), issue_article_path(params[:id], article), id: "show" + article.title.gsub(" ", "")
-              %td.text-center= link_to image_tag("delete.png", size: "24x24"), issue_article_path(params[:id], article), id: "delete" + article.title.gsub(" ", ""), :method => :delete
-              
-      .div.text-right
-        = link_to "Back to Issues", issues_path, :class=>"btn btn-primary btn-lg active btn-danger"
-        = link_to "New Article", new_issue_article_path(params[:id]), :class=>"btn btn-primary btn-lg active btn-success"
+              %td.text-center= link_to image_tag("delete.png", size: "24x24"), issue_article_path(params[:id], article), id: "delete" + article.title.gsub(" ", ""), :method => :delete, data: { confirm: "Are you sure?" }
+      
+      
+      .row
+        .col-sm-8
+          .text-left    
+            = link_to "Update Order", reorder_issue_path(@issue, :no_change=>true), :class=>"btn btn-primary btn-lg active .btn-primary", :id=>"order_btn"
+        .col-sm-4
+          .text-right
+            = link_to "Back to Issues", issues_path, :class=>"btn btn-primary btn-lg active btn-danger"
+            = link_to "New Article", new_issue_article_path(params[:id]), :class=>"btn btn-primary btn-lg active btn-success"
         

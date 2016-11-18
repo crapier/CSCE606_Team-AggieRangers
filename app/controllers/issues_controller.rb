@@ -56,6 +56,18 @@ class IssuesController < ApplicationController
         redirect_to issues_path
     end
     
+    def reorder
+        if (params[:no_change] != "true")
+            params[:new_order].map do |key, value|
+                article = Article.find(value[/\d/].to_i)
+                article.order_number = key.to_i
+                article.save!
+            end
+        end
+        
+        redirect_to issue_path(params[:id])
+    end
+    
     def generate
         coder = HTMLEntities.new
         
