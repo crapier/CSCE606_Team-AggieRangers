@@ -23,7 +23,7 @@
               %td= issue.issue_number
               %td= issue.date
               %td.text-center= link_to image_tag("show.png", size: "24x24"), issue_path(issue), id: "show" + issue.title.gsub(" ", "")
-              %td.text-center= link_to image_tag("delete.png", size: "24x24"), issue_path(issue), id: "delete" + issue.title.gsub(" ", "") , :method => :delete
+              %td.text-center= link_to image_tag("delete.png", size: "24x24"), issue_path(issue), id: "delete" + issue.title.gsub(" ", ""), :'data-confirm' => "Do you really want to delete this issue?", :'data-method' => "delete", :method => :delete
               %td.text-center= link_to image_tag("generate.png", size: "32x26"), generate_issue_path(issue), id: "generate" + issue.title.gsub(" ", "")
     .div.text-right
       = link_to "Add Issue", new_issue_path, :class=>"btn btn-primary btn-lg active btn-success"
