@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :issues do 
     member do
       get 'generate'
+      get 'reorder'
     end
     resources :articles
   end

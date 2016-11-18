@@ -15,3 +15,47 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap.min
+//= require jquery-ui.min
+
+
+// Helpers from https://stackoverflow.com/questions/2072848/reorder-html-table-rows-using-drag-and-drop
+
+var fixHelperModified = function(e, tr) {
+    var $originals = tr.children();
+    var $helper = tr.clone();
+    $helper.children().each(function(index) {
+        $(this).width($originals.eq(index).width())
+    });
+    return $helper;
+};
+
+updateIndex = function(e, ui) {
+    $('td.index', ui.item.parent()).each(function (i) {
+        $(this).html(i + 1);
+    });
+};
+
+updateLink = function(e, ui) {
+    var order_btn = $('#order_btn')[0];
+    // strip parameters
+    var href_new =  order_btn.href.substr(0, order_btn.href.indexOf('?') + 1);
+    
+    // add modifed parameter so controller will update
+    href_new += "no_change=false";
+    
+    var articles = $('#sortable')[0];
+    for (var i = 0; i < articles.children.length; i++) {
+        href_new += "&new_order[" + i + "]=" + articles.children[i].id;
+    }
+    
+    order_btn.href = href_new;
+};
+
+$(document).on('turbolinks:load', function() {
+    $("#sortable").sortable({
+        helper: fixHelperModified,
+        stop: updateIndex,
+        update: updateLink
+    }).disableSelection();
+});
+
