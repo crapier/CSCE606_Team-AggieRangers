@@ -9,7 +9,6 @@ Feature:  News Writer can eidt the information for an Article
     Then I should be on the edit Article 1 page for Issue 1
     
     When I fill in "article[title]" with "EditAnArticle"
-    And I fill in "article[order_number]" with "6"
     And fill in "article[image_url]" with "image1.jpg"
     And fill in "article[content]" with "test content1"
     And I press "Save Changes"
