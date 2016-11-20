@@ -26,8 +26,11 @@
               %td{:style => "width:1%", :class=> "text-center"}= image_tag("drag_reorder.png", size: "24x24") 
               %td{:style => "width:29%"}= article.title 
               %td{:style => "width:5%", :class=> "text-center"}= link_to image_tag("show.png", size: "24x24"), issue_article_path(params[:id], article), id: "show" + article.title.gsub(" ", "")
-              %td{:style => "width:5%", :class=> "text-center"}= link_to image_tag("delete.png", size: "24x24"), issue_article_path(params[:id], article), id: "delete" + article.title.gsub(" ", ""), :'data-confirm' => "Do you really want to delete this article?", :'data-method' => "delete", :method => :delete
-      
+              %td{:style => "width:5%", :class=> "text-center"}
+                %a{ :href => "#", :'data-href' => issue_article_path(params[:id], article), :'data-toggle' => "modal",
+                :'data-target' => "#confirm-delete", :id => "delete" + article.title.gsub(" ", ""),
+                :'data-message' => "Are you sure you want to delete the article ' " + article.title + " '"} 
+                  = image_tag("delete.png", size: "24x24")
       
       .row
         .col-sm-8

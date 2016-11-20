@@ -59,3 +59,33 @@ $(document).on('turbolinks:load', function() {
     }).disableSelection();
 });
 
+$( document ).ready(function() {
+    
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+        var url = $(e.relatedTarget).data('href');
+        var message = $(e.relatedTarget).data('message');
+        
+        $('#delete-message').text(message);
+        
+        $('#confirm-delete').on('click', '.btn-ok', function(e) {
+            $('#my-loader').removeClass('hide');
+            
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                success: function(response) {
+                    console.log('Delete success');
+                    $('#my-loader').addClass('hide');
+                },
+                error: function(response) {
+                    console.log('Error on delete');
+                    $('#delete-message').text('An error occurred when deleting, try it again later');
+                    $('#my-loader').addClass('hide');
+                }
+            });
+            
+        });
+    });
+});
+
+
