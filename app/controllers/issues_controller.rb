@@ -63,9 +63,9 @@ class IssuesController < ApplicationController
                 article.order_number = key.to_i
                 article.save!
             end
-            flash[:notice] = "Article Order Updated."
+            flash[:notice] = "Article Order(s) Updated."
         else 
-            flash[:notice] = "Article Order Unchanged."
+            flash[:notice] = "Article Order(s) Unchanged."
         end
         
         redirect_to issue_path(params[:id])

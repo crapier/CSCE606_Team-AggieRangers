@@ -12,15 +12,6 @@
               = text_field :article, 'title', :class=>'form-control new-issue-form-group'
           .col-sm-1
           
-        .row 
-          .col-sm-1
-          .col-sm-10
-            .form-group.new-issue-form-group
-              = label :article, :order_number, 'Order Number'
-              %br
-              = number_field :article, 'order_number'
-          .col-sm-1
-          
         .row
           .col-sm-1
           .col-sm-10
@@ -45,8 +36,4 @@
           = link_to "Cancel", issue_article_path(@issue, @article), :class=>"btn btn-primary btn-lg active btn-danger"
           = submit_tag 'Save Changes', :class=>"btn btn-primary btn-lg active btn-success"
       
-
-  <!--  This one should not appear. This is implicit as drag and drop-->
-  <!--  = label :article, :order_number, 'Order Number'-->
-  <!--  = number_field :article, 'order_number'-->
   

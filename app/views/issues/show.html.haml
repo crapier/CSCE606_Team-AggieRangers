@@ -17,15 +17,16 @@
       %table#articles.table.table-hover
         %thead
           %tr
-            %th{:style => "width:30%"} Title
+            %th{:style => "width:30%", :colspan => "2"} Title
             %th{:style => "width:5%", :class=> "text-center"} Show
             %th{:style => "width:5%", :class=> "text-center"} Delete
         %tbody#sortable
           - @articles.each do |article|
             %tr{:id => "article" + article.id.to_s}
-              %td= article.title 
-              %td.text-center= link_to image_tag("show.png", size: "24x24"), issue_article_path(params[:id], article), id: "show" + article.title.gsub(" ", "")
-              %td.text-center= link_to image_tag("delete.png", size: "24x24"), issue_article_path(params[:id], article), id: "delete" + article.title.gsub(" ", ""), :'data-confirm' => "Do you really want to delete this article?", :'data-method' => "delete", :method => :delete
+              %td{:style => "width:1%", :class=> "text-center"}= image_tag("drag_reorder.png", size: "24x24") 
+              %td{:style => "width:29%"}= article.title 
+              %td{:style => "width:5%", :class=> "text-center"}= link_to image_tag("show.png", size: "24x24"), issue_article_path(params[:id], article), id: "show" + article.title.gsub(" ", "")
+              %td{:style => "width:5%", :class=> "text-center"}= link_to image_tag("delete.png", size: "24x24"), issue_article_path(params[:id], article), id: "delete" + article.title.gsub(" ", ""), :'data-confirm' => "Do you really want to delete this article?", :'data-method' => "delete", :method => :delete
       
       
       .row
