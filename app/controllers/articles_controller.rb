@@ -23,6 +23,12 @@ class ArticlesController < ApplicationController
     end
     
     def create
+        if Issue.find(params[:issue_id]).articles.length > 0
+            params[:article][:order_number] = Issue.find(params[:issue_id]).articles.order("order_number DESC").first.order_number + 1
+        else
+            params[:article][:order_number] = 1;
+        end
+        
         @article = Issue.find(params[:issue_id]).articles.build(article_params)
         @article.save!
         flash[:notice] = "#{@article.title} was successfully created."

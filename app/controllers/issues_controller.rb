@@ -59,7 +59,7 @@ class IssuesController < ApplicationController
     def reorder
         if (params[:no_change] != "true")
             params[:new_order].map do |key, value|
-                article = Article.find(value[/\d/].to_i)
+                article = Article.find(value[/\d+/].to_i)
                 article.order_number = key.to_i
                 article.save!
             end
