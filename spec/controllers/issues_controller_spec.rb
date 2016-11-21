@@ -87,4 +87,37 @@ describe IssuesController do
             expect(response).to render_template(:generate)
         end
     end
+    
+    describe "#reorder" do
+        before(:all) do
+            @issue_1.articles.build({:title => "article_1", :order_number => 1, :image_url => "image.png", :content => "Content Content Content"})
+            @issue_1.articles.build({:title => "article_2", :order_number => 2, :image_url => "image.png", :content => "Content Content Content"})
+            @issue_1.save!
+           
+            @article_1 = @issue_1.articles.order(:order_number => :asc).first
+            @article_1_order = @article_1.order_number
+            @article_2 = @issue_1.articles.order(:order_number => :asc).last
+            @article_2_order = @article_2.order_number
+        end
+        
+        it "reorder articles" do
+            expect(Article.find(@article_1.id).order_number).to eq(@article_1_order)
+            expect(Article.find(@article_2.id).order_number).to eq(@article_2_order)
+            
+            get :reorder, id: @issue_1[:id], no_change: "false", new_order: {"1": "article" + @article_2.id.to_s, "2": "article" + @article_1.id.to_s}
+            
+            expect(Article.find(@article_1.id).order_number).to eq(2)
+            expect(Article.find(@article_2.id).order_number).to eq(1)
+        end
+        
+        it "no change so don't reorder" do
+            expect(Article.find(@article_1.id).order_number).to eq(@article_1_order)
+            expect(Article.find(@article_2.id).order_number).to eq(@article_2_order)
+            
+            get :reorder, id: @issue_1[:id], no_change: "true"
+            
+            expect(Article.find(@article_1.id).order_number).to eq(@article_1_order)
+            expect(Article.find(@article_2.id).order_number).to eq(@article_2_order)
+        end
+    end
 end

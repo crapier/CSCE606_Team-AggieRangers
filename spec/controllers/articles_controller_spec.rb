@@ -78,6 +78,12 @@ describe ArticlesController do
         it "create issue" do
           expect{ post :create, article: @article_params, issue_id: @issue_1[:id]}.to change{Article.all.size}.by(1)
         end
+        
+        it "create issue with no previous issue" do
+            @issue_2 = Issue.create(title: "title_1",volume: 1,issue_number: 2,date: 20161023)
+            expect{ post :create, article: @article_params, issue_id: @issue_2[:id]}.to change{Article.all.size}.by(1)
+            expect(Article.all.last.order_number).to eq(1)
+        end
     end  
     
 end
