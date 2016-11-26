@@ -36,9 +36,8 @@ updateIndex = function(e, ui) {
 };
 
 updateLink = function(e, ui) {
-    var order_btn = $('#order_btn')[0];
     // strip parameters
-    var href_new =  order_btn.href.substr(0, order_btn.href.indexOf('?') + 1);
+    var href_new =  window.location.href + "/reorder?"
     
     // add modifed parameter so controller will update
     href_new += "no_change=false";
@@ -48,7 +47,7 @@ updateLink = function(e, ui) {
         href_new += "&new_order[" + i + "]=" + articles.children[i].id;
     }
     
-    order_btn.href = href_new;
+    Turbolinks.visit(href_new)
 };
 
 $(document).on('turbolinks:load', function() {
