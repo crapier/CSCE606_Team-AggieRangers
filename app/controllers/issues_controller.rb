@@ -88,7 +88,7 @@ class IssuesController < ApplicationController
         @email_html.addline("                <td style='background-color: #500000;'><span style='color: #ffffff; font-size: xx-large;'><strong>" + coder.encode(@issue.title, :named) + "</strong></span></td>")
         @email_html.addline("            </tr>")
         @email_html.addline("            <tr>")
-        @email_html.addline("                <td style='background-color: #d3d3d3;'><em>The Graduate and Professional Student News Publication of Texas A&amp;M University</em><br />Volume " + @issue.volume.to_s + ", Issue " + @issue.issue_number.to_s + " |&nbsp;" + @issue.date.to_s + "</td>")
+        @email_html.addline("                <td style='background-color: #d3d3d3;'><em>The Graduate and Professional Student News Publication of Texas A&amp;M University</em><br />Volume " + @issue.volume.to_s + ", Issue " + @issue.issue_number.to_s + " |&nbsp;" + @issue.date.to_formatted_s(:long) + "</td>")
         @email_html.addline("            </tr>")
         @email_html.addline("        </tbody>")
         @email_html.addline("    </table>")
