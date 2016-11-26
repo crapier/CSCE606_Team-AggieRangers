@@ -19,7 +19,7 @@ class IssuesController < ApplicationController
     end
     
     def index
-         @issues = Issue.all
+         @issues = Issue.all.order(:date => :desc)
     end
     
     def new
