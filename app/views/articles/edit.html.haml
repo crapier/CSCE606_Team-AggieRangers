@@ -20,7 +20,13 @@
               %br
               = text_field :article, 'image_url', :class=>'form-control new-issue-form-group'
           .col-sm-1
-            
+        .row
+          .col-sm-1
+          .col-sm-10
+            .form-group.new-issue-form-group{style: "font-size:10px;"}
+              *Leave a blank for no image
+          .col-sm-1
+          
         .row 
           .col-sm-1
           .col-sm-10
@@ -28,6 +34,14 @@
               = label :article, :content, 'Content'
               %br
               = text_area :article, :content, :class=>'form-control new-issue-form-group', :style=>"height:250px;"
+          .col-sm-1
+        .row
+          .col-sm-1
+          .col-sm-10
+            .form-group.new-issue-form-group{style: "font-size:10px;"}
+              *HTML will be included in generated HTML
+              %br
+              *Leave a blank line for new paragraphs in generated HTML
           .col-sm-1
           
         %br
