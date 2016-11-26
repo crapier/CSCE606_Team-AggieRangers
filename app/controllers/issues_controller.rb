@@ -114,7 +114,8 @@ class IssuesController < ApplicationController
                 @email_html.addline("    <p style='text-align: justify;'><img style='float: left; margin-left: 5px; margin-right: 5px; border: 1px solid black; border-width: 1px;' src='" + article.image_url + "' alt='' width='400' height='225' /></p>")
             end
             
-            paragraphs = article.content.split(/\n\n/)
+            paragraphs = article.content.split(/\r*\n\r*\n/)
+            
             paragraphs.each do |paragraph|
                  @email_html.addline("    <p style='text-align: justify;'>" + coder.encode(paragraph, :named).gsub(/&lt;/, "<").gsub(/&gt;/, ">") + "</p>")
             end
