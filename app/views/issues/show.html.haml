@@ -11,8 +11,12 @@
             = link_to 'Edit', edit_issue_path(@issue), :class=>"btn btn-primary btn-md active"
             = link_to image_tag("generate.png", size: "40x40"), generate_issue_path(@issue), id: "generate" + @issue.title.gsub(" ", "")
   .panel.panel-default 
-    .panel-heading 
-      %h3="Articles"
+    .panel-heading
+      .row
+        %h3.col-sm-8="Articles"
+        .col-sm-4.text-right
+          = link_to "Back to Issues", issues_path, :class=>"btn btn-primary btn-lg active btn-danger"
+          = link_to "New Article", new_issue_article_path(params[:id]), :class=>"btn btn-primary btn-lg active btn-success"
     .panel-body
       %table#articles.table.table-hover
         %thead
@@ -27,14 +31,6 @@
               %td{:style => "width:29%"}= article.title 
               %td{:style => "width:5%", :class=> "text-center"}= link_to image_tag("show.png", size: "24x24"), issue_article_path(params[:id], article), id: "show" + article.title.gsub(" ", "")
               %td{:style => "width:5%", :class=> "text-center"}= link_to image_tag("delete.png", size: "24x24"), issue_article_path(params[:id], article), id: "delete" + article.title.gsub(" ", ""), :'data-confirm' => "Do you really want to delete this article?", :'data-method' => "delete", :method => :delete
-      
-      
-      .row
-        .col-sm-8
-          .text-left    
-            = link_to "Update Order", reorder_issue_path(@issue, :no_change=>true), :class=>"btn btn-primary btn-lg active .btn-primary", :id=>"order_btn"
-        .col-sm-4
-          .text-right
-            = link_to "Back to Issues", issues_path, :class=>"btn btn-primary btn-lg active btn-danger"
-            = link_to "New Article", new_issue_article_path(params[:id]), :class=>"btn btn-primary btn-lg active btn-success"
+
+
         
