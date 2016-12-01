@@ -50,11 +50,29 @@ updateLink = function(e, ui) {
     Turbolinks.visit(href_new)
 };
 
+updatePreview = function () {
+    var preview = $('#preview')
+    if (preview.length) {
+        var html = $('#email_html_text');
+        if (html.length) {
+            html = html[0].value;
+            
+            $('#preview').contents().find('html').html(html)
+        }
+    }
+};
+
 $(document).on('turbolinks:load', function() {
     $("#sortable").sortable({
         helper: fixHelperModified,
         stop: updateIndex,
         update: updateLink
     }).disableSelection();
+    
+    
+    
+    $('#email_html_text').bind('input propertychange', function() {
+        updatePreview();
+    });
 });
 

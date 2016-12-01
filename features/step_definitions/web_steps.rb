@@ -147,6 +147,10 @@ Then(/^There should be some generated HTML$/) do
   expect(text_area.first.text).to match(/<html>/)
 end
 
+Then(/^There should be some preview$/) do
+  expect(page.all("iframe#preview").length).to eq(1)
+end
+
 ###################################
 #      Default web steps          #
 ###################################

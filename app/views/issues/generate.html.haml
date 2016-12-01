@@ -5,6 +5,7 @@
     .panel-body
       = text_area :email_html, :text, style: "width: 100%; height: 500px;"
       
+      %iframe{:id => "preview", :style => "width:100%;height: 500px;", :srcdoc => @email_html.text} 
     .div.text-right
       = link_to "Show Issue", issue_path(@issue), :class=>"btn btn-primary btn-lg active btn-danger"
       = link_to "Back to Issues", issues_path, :class=>"btn btn-primary btn-lg active btn-success"
