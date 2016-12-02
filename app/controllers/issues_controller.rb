@@ -107,22 +107,29 @@ class IssuesController < ApplicationController
         
         #add each article
         letter = "A"
+        @email_html.addline("    <table>")
         @articles.each do |article|
             @email_html.addline("")
-            @email_html.addline("    <p style='text-align: justify;'><a name='" + letter + "'></a><span style='font-size: medium;'><strong>" + coder.encode(article.title, :named) + " </strong></span></p>")
+            @email_html.addline("    <tr><td>")
+            @email_html.addline("        <p style='text-align: justify;'><a name='" + letter + "'></a><span style='font-size: medium;'><strong>" + coder.encode(article.title, :named) + " </strong></span></p>")
+            @email_html.addline("    </td></tr>")
+            @email_html.addline("    <tr><td>")
             if (article.image_url.length > 0) 
-                @email_html.addline("    <p style='text-align: justify;'><img style='float: left; margin-left: 5px; margin-right: 5px; border: 1px solid black; border-width: 1px;' src='" + article.image_url + "' alt='' width='400' height='225' /></p>")
+                @email_html.addline("        <p style='text-align: justify;'><img style='float: left; margin-left: 5px; margin-right: 5px; border: 1px solid black; border-width: 1px;' src='" + article.image_url + "' alt='' width='400' height='225' /></p>")
             end
             
             paragraphs = article.content.split(/\r*\n\r*\n/)
             
             paragraphs.each do |paragraph|
-                 @email_html.addline("    <p style='text-align: justify;'>" + coder.encode(paragraph, :named).gsub(/&lt;/, "<").gsub(/&gt;/, ">") + "</p>")
+                 @email_html.addline("        <p style='text-align: justify;'>" + coder.encode(paragraph, :named).gsub(/&lt;/, "<").gsub(/&gt;/, ">") + "</p>")
             end
-            
-            @email_html.addline("    <hr />")
+            @email_html.addline("    </td></tr>")
+            @email_html.addline("    <tr><td>")
+            @email_html.addline("        <hr />")
+            @email_html.addline("    </td></tr>")
             letter.next!
         end
+        @email_html.addline("    </table>")
         
         @email_html.addline("")
         @email_html.addline("    <p style='text-align: justify;'><a name='1'></a><span style='font-size: medium;'><strong>About The Nth Degree</strong></span><br />The Nth Degree is an e-mail newsletter publication of the Graduate and Professional Student Council (GPSC). Founded digitally in 2008 after years in print, the newsletter serves as the source of news written by graduate and professional students, and delivered for graduate and professional students. Articles for The Nth Degree are welcomed by students of the graduate and professional student body.</p>")
