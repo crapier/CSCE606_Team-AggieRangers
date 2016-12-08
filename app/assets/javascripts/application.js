@@ -76,3 +76,8 @@ $(document).on('turbolinks:load', function() {
     });
 });
 
+$(window).load(function(){
+    $('#preview').contents().find('a').click(function(event) {
+        event.preventDefault();
+    }); 
+});
